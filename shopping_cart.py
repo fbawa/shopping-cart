@@ -28,16 +28,14 @@ products = [
 #print(products)
 # pprint(products)
 total_price = 0
-
+selected_ids = []
 # User choice
 while True:
     selected_id = input("Please input a product identifier:")
     if selected_id == "Done":
         break
     else:
-        matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
-        matching_product = matching_products[0]
-        total_price = total_price + matching_product["price"]
+        selected_ids.append(selected_id)
 
 # Receipt fields
 print("--------------")
@@ -47,19 +45,25 @@ print("--------------")
 print("CHECKOUT AT: 2019-06-06 11:31 AM")
 print("--------------")
 print("SELECTED PRODUCTS:")
-for q in matching_products:
-        price_usd = "${0:.2f}".format(q["price"])
-        print("..." + q["name"] + " (" + str(price_usd) + ")")
+for selected_id in selected_ids:
+        matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
+        matching_product = matching_products[0]
+        total_price = total_price + matching_product["price"]
+        total_tax = total_price * .075
+        price_usd = "${0:.2f}".format(matching_product["price"])
+        print("..." + matching_product["name"] + " (" + str(price_usd) + ")")
+
+total_priceformat = "${0:.2f}".format(total_price)
+total_taxformat = "${0:.2f}".format(total_tax)
+total = float(total_price) + float(total_tax)
+total_format = "${0:.2f}".format(total)
+
 print("--------------")
-print("SUBTOTAL:")
-print("TAX:")
-print("TOTAL:" + str(total_price))
+print("SUBTOTAL:"+ str(total_priceformat))
+print("TAX:" + str(total_taxformat))
+print("TOTAL:" + str(total_format))
 print("--------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("--------------")
-
-#print(F"THERE ARE {products_count} PRODUCTS:")
-
-
 
 # TODO: write some Python code here to produce the desired output
