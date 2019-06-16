@@ -28,11 +28,12 @@ products = [
 #print(products)
 # pprint(products)
 
+
 # User choice
 
 selected_id = input("Please input a product identifier:")
 
-matching_products = [p for p in products if str(p["id"])  == str([selected_id])
+matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
 
 # Receipt fields
 print("--------------")
@@ -42,12 +43,9 @@ print("--------------")
 print("CHECKOUT AT: 2019-06-06 11:31 AM")
 print("--------------")
 print("SELECTED PRODUCTS:")
-#if user_choice in Options:
-    #for p in products:
-        #price_usd = "${0:.2f}".format(p["price"])
-        #print("..." + p["name"] + " (" + str(price_usd) + ")")
-#else:
-    #print("None")
+for q in matching_products:
+        price_usd = "${0:.2f}".format(q["price"])
+        print("..." + q["name"] + " (" + str(price_usd) + ")")
 print("--------------")
 print("SUBTOTAL:")
 print("TAX:")
