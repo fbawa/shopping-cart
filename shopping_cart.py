@@ -27,13 +27,17 @@ products = [
 
 #print(products)
 # pprint(products)
-
+total_price = 0
 
 # User choice
-
-selected_id = input("Please input a product identifier:")
-
-matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
+while True:
+    selected_id = input("Please input a product identifier:")
+    if selected_id == "Done":
+        break
+    else:
+        matching_products = [p for p in products if str(p["id"])  == str(selected_id)]
+        matching_product = matching_products[0]
+        total_price = total_price + matching_product["price"]
 
 # Receipt fields
 print("--------------")
@@ -49,7 +53,7 @@ for q in matching_products:
 print("--------------")
 print("SUBTOTAL:")
 print("TAX:")
-print("TOTAL:")
+print("TOTAL:" + str(total_price))
 print("--------------")
 print("THANKS, SEE YOU AGAIN SOON!")
 print("--------------")
